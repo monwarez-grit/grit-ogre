@@ -192,6 +192,43 @@ namespace Ogre {
 			}
         }
 
+        template<class U> Ogre::SharedPtr<U> staticCast (void) const {
+            Ogre::SharedPtr<U> r;
+            if (isNull()) {
+                r.setNull();
+                return r;
+            }
+            assert(pUseCount);
+            r.pRep = static_cast<U*>(pRep);
+            r.pUseCount = pUseCount;
+            r.useFreeMethod = useFreeMethod;
+#if OGRE_THREAD_SUPPORT
+			r.OGRE_AUTO_MUTEX_NAME = OGRE_AUTO_MUTEX_NAME;
+#endif
+            OGRE_LOCK_AUTO_SHARED_MUTEX
+            (*pUseCount)++; // we are creating a copy
+            return r;
+        }
+
+        template<class U> Ogre::SharedPtr<U> dynamicCast (void) const {
+            Ogre::SharedPtr<U> r;
+            U *casted_prep = dynamic_cast<U*>(pRep);
+            if (casted_prep == NULL) {
+                r.setNull();
+                return r;
+            }
+            assert(pUseCount);
+            r.pRep = casted_prep;
+            r.pUseCount = pUseCount;
+            r.useFreeMethod = useFreeMethod;
+#if OGRE_THREAD_SUPPORT
+            r.OGRE_AUTO_MUTEX_NAME = OGRE_AUTO_MUTEX_NAME;
+#endif
+            OGRE_LOCK_AUTO_SHARED_MUTEX
+            (*pUseCount)++; // we are creating a copy
+            return r;
+        }
+
     protected:
 
         inline void release(void)
@@ -253,6 +290,9 @@ namespace Ogre {
 			std::swap(OGRE_AUTO_MUTEX_NAME, other.OGRE_AUTO_MUTEX_NAME);
 #endif
 		}
+
+        template<class U> friend class SharedPtr;
+
 	};
 
 	template<class T, class U> inline bool operator==(SharedPtr<T> const& a, SharedPtr<U> const& b)
@@ -269,9 +309,12 @@ namespace Ogre {
 	{
 		return std::less<const void*>()(a.get(), b.get());
 	}
+
+
 	/** @} */
 	/** @} */
 }
+
 
 
 
