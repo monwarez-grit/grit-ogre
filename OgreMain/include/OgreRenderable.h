@@ -409,9 +409,19 @@ namespace Ogre {
             mRenderSystemData = val; 
         }
 
+        typedef std::map<size_t, Vector4> CustomParameterMap;
+
+        virtual const CustomParameterMap &getCustomParameters (void) const
+        {
+            return mCustomParameters;
+        }
+
+        virtual void setCustomParameters (const CustomParameterMap &v)
+        {
+            mCustomParameters = v;
+        }
 
     protected:
-        typedef map<size_t, Vector4>::type CustomParameterMap;
         CustomParameterMap mCustomParameters;
         bool mPolygonModeOverrideable;
         bool mUseIdentityProjection;
@@ -426,5 +436,4 @@ namespace Ogre {
 } // namespace Ogre
 
 #include "OgreHeaderSuffix.h"
-
 #endif //__Renderable_H__

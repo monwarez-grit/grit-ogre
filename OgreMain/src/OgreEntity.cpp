@@ -141,8 +141,18 @@ namespace Ogre {
 	//-----------------------------------------------------------------------
 	void Entity::_initialise(bool forceReinitialise)
 	{
-		if (forceReinitialise)
+        
+        typedef std::map<int, Renderable::CustomParameterMap> M;
+        M params;
+		if (forceReinitialise && mInitialised) {
+            // save custom params
+            int counter = 0;
+            for (SubEntityList::iterator i=mSubEntityList.begin(), iend=mSubEntityList.end(); i!=iend; ++i)
+            {
+                params[counter++] = (*i)->getCustomParameters();
+            }
 			_deinitialise();
+        }
 
 		if (mInitialised)
 			return;
@@ -214,6 +224,17 @@ namespace Ogre {
 
 		mInitialised = true;
 		mMeshStateCount = mMesh->getStateCount();
+
+        int counter = 0;
+        for (SubEntityList::iterator i=mSubEntityList.begin(), iend=mSubEntityList.end(); i!=iend; ++i)
+        {
+            int index = counter;
+            if (params.find(index)==params.end()) index = 0;
+            if (params.find(index)!=params.end()) {
+                (*i)->setCustomParameters(params[index]);
+            }
+            counter++;
+        }
 
 	}
 	//-----------------------------------------------------------------------
