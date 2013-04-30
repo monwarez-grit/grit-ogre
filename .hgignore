@@ -1,8 +1,17 @@
 syntax: glob
+*~
+Makefile
+Makefile.depend
+CMakeFiles
 testTerrain*.dat
+grit_ogre_obj
+cmake_build
+api
+output
 *.dll
 #*.vcxproj
 #*.filters
+#*.vcxproj
 *.vcxproj.user
 *.pdb
 *.ilk
