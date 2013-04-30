@@ -182,6 +182,7 @@ namespace Ogre {
 
 // If we're not including this from a client build, specify that the stuff
 // should get exported. Otherwise, import it.
+#	define _OgreNoInline
 #	if defined( OGRE_STATIC_LIB )
 		// Linux compilers don't have symbol import/export directives.
 #   	define _OgreExport
@@ -211,6 +212,7 @@ namespace Ogre {
 // MinGW C++ Toolkit supports unicode and sets the define __MINGW32_TOOLBOX_UNICODE__ in _mingw.h
 // GCC 4 is also fine
 #if defined(__MINGW32__)
+# define _OgreNoInline
 # if OGRE_COMP_VER < 400
 #  if !defined(_STLPORT_VERSION)
 #   include<_mingw.h>
@@ -236,6 +238,7 @@ namespace Ogre {
 #if OGRE_PLATFORM == OGRE_PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_APPLE || OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS || \
     OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_NACL || OGRE_PLATFORM == OGRE_PLATFORM_FLASHCC
 
+#   define _OgreNoInline __attribute__((noinline))
 // Enable GCC symbol visibility
 #   if defined( OGRE_GCC_VISIBILITY )
 #       define _OgreExport  __attribute__ ((visibility("default")))

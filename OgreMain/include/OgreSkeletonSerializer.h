@@ -122,7 +122,7 @@ namespace Ogre {
         // Internal import methods
 		void readFileHeader(DataStreamPtr& stream);
 		void readBone(DataStreamPtr& stream, Skeleton* pSkel);
-        void readBoneParent(DataStreamPtr& stream, Skeleton* pSkel);
+        void readBoneParent(DataStreamPtr& stream, Skeleton* pSkel) _OgreNoInline;
         void readAnimation(DataStreamPtr& stream, Skeleton* pSkel);
         void readAnimationTrack(DataStreamPtr& stream, Animation* anim, Skeleton* pSkel);
         void readKeyFrame(DataStreamPtr& stream, NodeAnimationTrack* track, Skeleton* pSkel);
