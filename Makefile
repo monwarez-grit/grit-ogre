@@ -284,18 +284,6 @@ OGRE_SOURCE=OgreMain/src/OgreAlignedAllocator.cpp \
             PlugIns/OctreeSceneManager/src/OgreOctreePlugin.cpp \
             PlugIns/OctreeSceneManager/src/OgreOctreeSceneManager.cpp \
             PlugIns/OctreeSceneManager/src/OgreOctreeSceneQuery.cpp \
-            Components/Overlay/src/OgreOverlayContainer.cpp \
-            Components/Overlay/src/OgreOverlay.cpp \
-            Components/Overlay/src/OgreOverlayElementCommands.cpp \
-            Components/Overlay/src/OgreOverlayElementFactory.cpp \
-            Components/Overlay/src/OgreOverlayElement.cpp \
-            Components/Overlay/src/OgreOverlayManager.cpp \
-            Components/Overlay/src/OgreOverlaySystem.cpp \
-            Components/Overlay/src/OgrePanelOverlayElement.cpp \
-            Components/Overlay/src/OgreTextAreaOverlayElement.cpp \
-            Components/Overlay/src/OgreBorderPanelOverlayElement.cpp \
-            Components/Overlay/src/OgreFont.cpp \
-            Components/Overlay/src/OgreFontManager.cpp \
 
 
 ################################################################################
