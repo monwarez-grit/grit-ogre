@@ -23,19 +23,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE
 -------------------------------------------------------------------------*/
-#ifndef __OgreThreadHeaders_H__
-#define __OgreThreadHeaders_H__
+#ifndef __OgreThreadHeadersStd_H__
+#define __OgreThreadHeadersStd_H__
 
-#if OGRE_THREAD_PROVIDER == 1
-	#include "OgreThreadHeadersBoost.h"
-#elif OGRE_THREAD_PROVIDER == 2
-	#include "OgreThreadHeadersPoco.h"
-#elif OGRE_THREAD_PROVIDER == 3
-	#include "OgreThreadHeadersTBB.h"
-#elif OGRE_THREAD_PROVIDER == 4
-	#include "OgreThreadHeadersStd.h"
-#endif
+#include <thread>
+#include <mutex>
+#include <chrono>
+#include <condition_variable>
 
 #endif
-
-
