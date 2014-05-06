@@ -120,7 +120,11 @@ namespace Ogre {
 	typedef unsigned long ulong;
 
 	// Useful threading defines
+}
+
 #include "Threading/OgreThreadDefines.h"
+
+namespace Ogre {
 
 // Pre-declare classes
 // Allows use of pointers in header files without including individual .h

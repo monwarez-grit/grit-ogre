@@ -10,7 +10,7 @@ ROOT=../..
 #general compiler flags - note optimisation flags, and architecture
 OGRE_OPT           ?= -DNDEBUG -O2 -finline-functions -funroll-loops
 OGRE_DBG           ?=
-OGRE_BASE_CXXFLAGS ?= -g -ffast-math $(GRIT_ARCH) -Wno-deprecated -Wfatal-errors -DVERSION=grit_ogre
+OGRE_BASE_CXXFLAGS ?= -std=c++0x -g -ffast-math $(GRIT_ARCH) -Wno-deprecated -Wfatal-errors -DVERSION=grit_ogre
 OGRE_BASE_LDFLAGS  ?=
 OGRE_BASE_LDLIBS   ?=
 
@@ -350,6 +350,6 @@ depend:
 	rm $(TEMPFILE)
 	sed -i 's/\([^/]*\)\/Tools\/XMLConverter\/src\/main[.]o/OgreXMLConverter/g' Makefile.depend
 
--include $(THISFILE).depend
+-include Makefile.depend
 
 # vim: sw=8:ts=8:noet
