@@ -293,12 +293,12 @@ OGRE_SOURCE=OgreMain/src/OgreAlignedAllocator.cpp \
 grit_ogre_obj/opt/%.o: %.cpp
 	@mkdir -p `dirname "$@"`
 	@echo "Compiling (optimised): \"$@\""
-	@$(CXX) -pedantic $(OGRE_CXXFLAGS) $(OGRE_OPT) -DOGRE_THREAD_SUPPORT=2 -DOGRE_THREAD_PROVIDER=1 -c "$<" -o "$@"
+	@$(CXX) -pedantic $(OGRE_CXXFLAGS) $(OGRE_OPT) -c "$<" -o "$@"
 
 grit_ogre_obj/dbg/%.o: %.cpp
 	@mkdir -p `dirname "$@"`
 	@echo "Compiling (debug): \"$@\""
-	@$(CXX) -pedantic $(OGRE_CXXFLAGS) $(OGRE_DBG) -DOGRE_THREAD_SUPPORT=2 -DOGRE_THREAD_PROVIDER=1 -c "$<" -o "$@"
+	@$(CXX) -pedantic $(OGRE_CXXFLAGS) $(OGRE_DBG) -c "$<" -o "$@"
 
 
 # create the files in $(OGRE_SOURCE) where *.cpp is replaced with grit_ogre_obj/opt/*.o
