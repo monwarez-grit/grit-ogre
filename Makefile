@@ -10,7 +10,7 @@ ROOT=../..
 #general compiler flags - note optimisation flags, and architecture
 OGRE_OPT           ?= -DNDEBUG -O2 -finline-functions -funroll-loops
 OGRE_DBG           ?=
-OGRE_BASE_CXXFLAGS ?= -std=c++0x -g -ffast-math $(GRIT_ARCH) -Wno-deprecated -Wfatal-errors -DVERSION=grit_ogre
+OGRE_BASE_CXXFLAGS ?= -g -ffast-math $(GRIT_ARCH) -Wno-deprecated -Wfatal-errors -DVERSION=grit_ogre
 OGRE_BASE_LDFLAGS  ?=
 OGRE_BASE_LDLIBS   ?=
 
@@ -293,12 +293,12 @@ OGRE_SOURCE=OgreMain/src/OgreAlignedAllocator.cpp \
 grit_ogre_obj/opt/%.o: %.cpp
 	@mkdir -p `dirname "$@"`
 	@echo "Compiling (optimised): \"$@\""
-	@$(CXX) -pedantic $(OGRE_CXXFLAGS) $(OGRE_OPT) -c "$<" -o "$@"
+	@$(CXX) -std=c++0x -pedantic $(OGRE_CXXFLAGS) $(OGRE_OPT) -c "$<" -o "$@"
 
 grit_ogre_obj/dbg/%.o: %.cpp
 	@mkdir -p `dirname "$@"`
 	@echo "Compiling (debug): \"$@\""
-	@$(CXX) -pedantic $(OGRE_CXXFLAGS) $(OGRE_DBG) -c "$<" -o "$@"
+	@$(CXX) -std=c++0x -pedantic $(OGRE_CXXFLAGS) $(OGRE_DBG) -c "$<" -o "$@"
 
 
 # create the files in $(OGRE_SOURCE) where *.cpp is replaced with grit_ogre_obj/opt/*.o
@@ -322,10 +322,10 @@ XMLCONVERTER_SOURCE=Tools/XMLConverter/src/main.cpp \
                     Tools/XMLConverter/src/tinystr.cpp
 
 grit_ogre_obj/dbg/OgreXMLConverter.$(GRIT_EXEC_SUFFIX): $(XMLCONVERTER_SOURCE) grit_ogre_obj/dbg/libogre.a
-	$(CXX) -pedantic  -DTIXML_USE_STL -I Tools/XMLConverter/include $(OGRE_CXXFLAGS) $(OGRE_DBG) $^ -o "$@" $(OGRE_LDFLAGS) $(OGRE_DEPLDLIBS)
+	$(CXX) -std=c++0x -pedantic  -DTIXML_USE_STL -I Tools/XMLConverter/include $(OGRE_CXXFLAGS) $(OGRE_DBG) $^ -o "$@" $(OGRE_LDFLAGS) $(OGRE_DEPLDLIBS)
 
 grit_ogre_obj/opt/OgreXMLConverter.$(GRIT_EXEC_SUFFIX): $(XMLCONVERTER_SOURCE) grit_ogre_obj/opt/libogre.a
-	$(CXX) -pedantic  -DTIXML_USE_STL -I Tools/XMLConverter/include $(OGRE_CXXFLAGS) $(OGRE_OPT) $^ -o "$@" $(OGRE_LDFLAGS) $(OGRE_DEPLDLIBS)
+	$(CXX) -std=c++0x -pedantic  -DTIXML_USE_STL -I Tools/XMLConverter/include $(OGRE_CXXFLAGS) $(OGRE_OPT) $^ -o "$@" $(OGRE_LDFLAGS) $(OGRE_DEPLDLIBS)
 
 GRIT_BLENDER_DIR=../../exporters/blender_scripts/addons/grit_blender
 $(GRIT_BLENDER_DIR)/OgreXMLConverter.$(GRIT_EXEC_SUFFIX): grit_ogre_obj/opt/OgreXMLConverter.$(GRIT_EXEC_SUFFIX)
